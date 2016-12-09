@@ -17,10 +17,8 @@
 #define LOG_TAG "audio_hw_primary"
 /*#define LOG_NDEBUG 0*/
 
-#include <errno.h>
 #include <dlfcn.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include <utils/Log.h>
 #include <cutils/properties.h>
@@ -61,11 +59,6 @@ static int ril_connect_if_required(struct ril_handle *ril)
 {
     int ok;
     int rc;
-
-    if (ril->client == NULL) {
-        ALOGE("ril->client is NULL");
-        return -1;
-    }
 
     ok = isConnected_RILD(ril->client);
     if (ok) {
@@ -133,7 +126,6 @@ int ril_close(struct ril_handle *ril)
         ALOGE("CloseClient_RILD() failed");
         return -1;
     }
-    ril->client = NULL;
 
     return 0;
 }
