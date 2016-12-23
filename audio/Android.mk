@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,20 +23,12 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := audio_hw.c ril_interface.c
 
-ifeq ($(BOARD_USES_NEW_HDMI), true)
-    LOCAL_CFLAGS += -DUSES_NEW_HDMI
-endif
-
 LOCAL_C_INCLUDES += \
 	external/tinyalsa/include \
 	$(call include-path-for, audio-effects) \
 	$(call include-path-for, audio-utils) \
 	$(call include-path-for, audio-route) \
-	hardware/samsung/ril/libsecril-client \
-        $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
-
-LOCAL_ADDITIONAL_DEPENDENCIES += \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+	hardware/samsung/ril/libsecril-client
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libaudioutils libdl \
 	libaudioroute libsecril-client
